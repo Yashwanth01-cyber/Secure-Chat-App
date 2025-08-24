@@ -33,3 +33,24 @@ Backend (Flask)
 🔑 Python cryptography library for secure key handling
 
 🗄️ SQLite (can upgrade to PostgreSQL/MySQL later)
+🔒 Security Features
+
+AES end-to-end encryption for messages before sending to server
+
+Encrypted messages stored in database (no plain text)
+
+Secure WebSocket communication
+
+🛡️ Future Improvements
+
+Premium UI/UX with animations
+
+Group Chats & Media Sharing
+
+Push Notifications
+
+Mobile (React Native) & Desktop (Electron) apps
+
+👨‍💻 Author
+
+Yaswanth – GitHub
