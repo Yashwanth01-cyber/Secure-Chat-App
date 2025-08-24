@@ -1,0 +1,136 @@
+:root{
+  --bg:#0f1222; --card:#11152b; --text:#eef1f6; --muted:#92a0b4;
+  --accent:#7c4dff; --accent2:#44d2ff; --ring:rgba(124,77,255,.32);
+  --me:#22c55e; --other:#1f2937;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color:var(--text); background:var(--bg);
+}
+
+/* animated background */
+.bg-grad{position:fixed; inset:0; pointer-events:none;
+  background:
+    radial-gradient(1200px 800px at -10% -10%, rgba(124,77,255,.18), transparent),
+    radial-gradient(1000px 700px at 110% 20%, rgba(68,210,255,.16), transparent),
+    radial-gradient(900px 600px at 50% 120%, rgba(34,197,94,.14), transparent);
+  filter:saturate(120%);
+}
+
+/* layout */
+.app{
+  max-width:980px; margin:24px auto; padding:0 16px;
+  min-height:calc(100vh - 48px);
+  display:grid; grid-template-rows:auto 1fr auto; gap:12px;
+}
+.topbar{
+  display:flex; justify-content:space-between; align-items:center;
+  background:color-mix(in oklab, var(--card) 85%, white 0%);
+  border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:12px 14px;
+  backdrop-filter: blur(8px); box-shadow:0 8px 28px rgba(0,0,0,.35);
+}
+.brand{display:flex; gap:12px; align-items:center}
+.logo{
+  width:40px;height:40px;display:grid;place-items:center;color:#fff;font-size:20px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  box-shadow:0 8px 22px var(--ring);
+}
+.brand h1{margin:0;font-size:18px}
+.brand p{margin:0;color:var(--muted);font-size:12px}
+.actions{display:flex;gap:10px;align-items:center}
+.ghost{
+  background:transparent;border:1px solid rgba(255,255,255,.14);color:var(--text);
+  padding:6px 10px;border-radius:10px;cursor:pointer
+}
+.ghost:hover{border-color:rgba(255,255,255,.28)}
+.mechip{display:flex;align-items:center;gap:8px}
+.avatar{
+  width:28px;height:28px;border-radius:50%;
+  display:grid;place-items:center;font-weight:700;color:#0b1220;
+  background:linear-gradient(135deg,#2dd4bf,#22c55e);
+  border:1px solid rgba(255,255,255,.18)
+}
+.muted{color:var(--muted);font-size:13px}
+
+/* chat panel */
+.panel{
+  position:relative; background:color-mix(in oklab, var(--card) 90%, white 0%);
+  border:1px solid rgba(255,255,255,.06); border-radius:20px; padding:12px;
+  box-shadow:0 12px 40px rgba(0,0,0,.35); display:flex; min-height:0;
+}
+.messages{
+  list-style:none; margin:0; padding:8px; flex:1; overflow-y:auto;
+  display:flex; flex-direction:column; gap:10px; scroll-behavior:smooth;
+}
+
+/* rows */
+.row{display:flex; gap:8px}
+.row.left{justify-content:flex-start}
+.row.right{justify-content:flex-end}
+.row.center{justify-content:center}
+
+/* tiny avatar for others */
+.small-avatar{
+  width:28px;height:28px;border-radius:50%;flex:0 0 auto;
+  display:grid;place-items:center;font-size:12px;font-weight:700;color:#0a0f1a;
+  border:1px solid rgba(255,255,255,.18);
+  background:linear-gradient(135deg,#60a5fa,#a78bfa);
+  margin-top:2px;
+}
+
+/* bubbles */
+.bubble{
+  max-width:70ch; padding:10px 12px; border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 6px 18px rgba(0,0,0,.25); word-wrap:break-word; white-space:pre-wrap;
+  animation:fadeIn .18s ease-out;
+}
+.me{background:linear-gradient(145deg, rgba(34,197,94,.18), rgba(34,197,94,.10)); border-color:rgba(34,197,94,.28)}
+.other{background:linear-gradient(145deg, rgba(30,41,59,.35), rgba(30,41,59,.2)); border-color:rgba(255,255,255,.08)}
+.system{
+  background:rgba(255,255,255,.06); border:1px dashed rgba(255,255,255,.18);
+  color:#e7ebf5; text-align:center; border-radius:999px; padding:8px 12px;
+}
+
+/* meta */
+.meta{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);margin-bottom:6px}
+.name{font-weight:700;color:#e7ebf5}
+.time{margin-left:auto;opacity:.85;font-variant-numeric:tabular-nums}
+
+/* typing */
+.typing{
+  position:absolute; left:16px; bottom:64px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+  color:var(--muted); padding:6px 10px; border-radius:999px; font-size:12px;
+  backdrop-filter: blur(6px);
+}
+.hidden{display:none}
+
+/* composer */
+.composer{
+  display:flex; gap:10px; align-items:center;
+  background:color-mix(in oklab, var(--card) 92%, white 0%);
+  border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35)
+}
+.input{
+  flex:1; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.03); color:var(--text); outline:none
+}
+.input:focus{border-color:var(--ring); box-shadow:0 0 0 4px rgba(124,77,255,.14)}
+.send{
+  padding:12px 16px; border:0; border-radius:10px; cursor:pointer; font-weight:700; color:#04121e;
+  background:linear-gradient(135deg,var(--accent),var(--accent2)); box-shadow:0 10px 24px var(--ring)
+}
+.send:hover{filter:brightness(1.04)}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)}}
+
+/* Light theme */
+.light{
+  --bg:#f5f7fb; --card:#ffffff; --text:#0b1220; --muted:#5b6577; --other:#eef2f8; --ring:rgba(68,210,255,.22);
+}
